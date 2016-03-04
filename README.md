@@ -1,2 +1,2 @@
 # ec
-EC example and course material
+EC examples and course material
