@@ -18,6 +18,7 @@ namespace GameOfLife_1._0
 
                     RenderCell(x, y, bgColor, fgColor);
 
+
                 }
             }
         }
