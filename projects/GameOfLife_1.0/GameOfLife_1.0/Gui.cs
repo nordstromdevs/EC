@@ -17,6 +17,7 @@ namespace GameOfLife_1._0
                     var bgColor = cells[x, y] ? ConsoleColor.Green : ((x+y)%2==0 ? ConsoleColor.Black : ConsoleColor.DarkGray);
 
                     RenderCell(x, y, bgColor, fgColor);
+
                 }
             }
         }
