@@ -30,7 +30,9 @@ namespace GameOfLife
 
             _g = _canvas.CreateGraphics();
             _frame = new Bitmap(_canvas.DisplayRectangle.Width, _canvas.DisplayRectangle.Height);
-            _frameG = Graphics.FromImage(_frame);                      
+            _frameG = Graphics.FromImage(_frame);
+
+            this.FormClosing += (s,e) => _running = false;                    
         }
 
         private void _btnRestart_Click(object sender, EventArgs e)
@@ -62,26 +64,27 @@ namespace GameOfLife
             DrawGrid(_frameG, CELL_COUNT, CELL_SIZE);
 
             // flip back buffer
-            _g.DrawImage(_frame, 0, 0);
+            _g.DrawImage(_frame, 0, 0);            
         }                      
 
         private void DrawCells(Graphics g)
         {
             foreach (var item in _cellHandler.Cells)
-            {                
+            {
+                var blueValue = Math.Min(255, item.Y * 3);
                 switch (item.State)
                 {
                     case Cell.AliveState.Alive:
-                        DrawCell(g, item.X, item.Y, CELL_SIZE, Color.FromArgb(200, 0, (item.Y * 3)));
+                        DrawCell(g, item.X, item.Y, CELL_SIZE, Color.FromArgb(200, 0, blueValue));
                         break;
                     case Cell.AliveState.Dying:
-                        DrawCell(g, item.X, item.Y, CELL_SIZE, Color.FromArgb(100, 0, (item.Y * 3)));
+                        DrawCell(g, item.X, item.Y, CELL_SIZE, Color.FromArgb(100, 0, blueValue));
                         break;
                     case Cell.AliveState.Living:
-                        DrawCell(g, item.X, item.Y, CELL_SIZE, Color.FromArgb(255, 0, (item.Y * 3)));
+                        DrawCell(g, item.X, item.Y, CELL_SIZE, Color.FromArgb(255, 0, blueValue));
                         break;
                     case Cell.AliveState.Dead:
-                        DrawCell(g, item.X, item.Y, CELL_SIZE, Color.FromArgb(10, 0, (item.Y * 3)));
+                        DrawCell(g, item.X, item.Y, CELL_SIZE, Color.FromArgb(10, 0, blueValue));
                         break;
                     default:
                         break;
