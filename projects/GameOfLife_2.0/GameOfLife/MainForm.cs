@@ -11,7 +11,7 @@ using System.Windows.Threading;
 
 namespace GameOfLife
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
         private const int CELL_COUNT = 30;
         private const int CELL_SIZE = 15;
@@ -22,7 +22,7 @@ namespace GameOfLife
         private int _iterations;     
         private bool _running = false;                
 
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
 
