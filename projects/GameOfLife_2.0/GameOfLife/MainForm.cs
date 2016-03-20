@@ -46,6 +46,7 @@ namespace GameOfLife
             _running = !_running;                                        
             _btnGo.Text = _running ? "Pause..." : "Go..";
 
+            // To make the GUI fluent we need to await an asynchronous anonymous method
             await Task.Run(() =>
             {
                 while (_running)
@@ -53,6 +54,8 @@ namespace GameOfLife
                     _cellHandler.UpdateCells();
                     DrawCellGrid();
 
+                    // We want to set the label on the Form, but in order to avoid cross-threading exception
+                    // we need to Invoke an Action on the GUI-main thread
                     this.Invoke(new Action(() => _lblCount.Text = "" + ++_iterations));
                 }
             });                    
