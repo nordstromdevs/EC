@@ -19,9 +19,6 @@ namespace WeatherForecast
 
     class Weather
     {
-
-        //Enum.GetNames(typeof(MyEnum)).Length;
-
         private Random _random;
 
         public Weather()
